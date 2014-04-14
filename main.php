@@ -25,20 +25,30 @@ $showSidebar = page_findnearest(tpl_getConf('sidebarID')) && ($ACT=='show');
 </head>
 
 <body data-spy="scroll" data-target="#dw_toc">
-    <?php /* with these Conditional Comments you can better address IE issues in CSS files,
-             precede CSS rules by #IE6 for IE6, #IE7 for IE7 and #IE8 for IE8 (div closes at the bottom) */ ?>
-    <!--[if IE 6 ]><div id="IE6"><![endif]--><!--[if IE 7 ]><div id="IE7"><![endif]--><!--[if IE 8 ]><div id="IE8"><![endif]-->
+<?php /* with these Conditional Comments you can better address IE issues in CSS files,
+precede CSS rules by #IE6 for IE6, #IE7 for IE7 and #IE8 for IE8 (div closes at the bottom) */ ?>
+<!--[if IE 6 ]><div id="IE6"><![endif]--><!--[if IE 7 ]><div id="IE7"><![endif]--><!--[if IE 8 ]><div id="IE8"><![endif]-->
 
-    <?php /* the "dokuwiki__top" id is needed somewhere at the top, because that's where the "back to top" button/link links to */ ?>
-    <?php /* classes mode_<action> are added to make it possible to e.g. style a page differently if it's in edit mode,
-         see http://www.dokuwiki.org/devel:action_modes for a list of action modes */ ?>
-    <?php /* .dokuwiki should always be in one of the surrounding elements (e.g. plugins and templates depend on it) */ ?>
-    <div id="dokuwiki__site" ><div id="dokuwiki__top"
-        class="dokuwiki site mode_<?php echo $ACT ?> <?php echo ($showSidebar) ? 'hasSidebar' : '' ?>">
+<?php /* the "dokuwiki__top" id is needed somewhere at the top, because that's where the "back to top" button/link links to */ ?>
+<?php /* classes mode_<action> are added to make it possible to e.g. style a page differently if it's in edit mode,
+see http://www.dokuwiki.org/devel:action_modes for a list of action modes */ ?>
+<?php /* .dokuwiki should always be in one of the surrounding elements (e.g. plugins and templates depend on it) */ ?>
+<div id="dokuwiki__site" ><div id="dokuwiki__top"
+class="dokuwiki site mode_<?php echo $ACT ?> <?php echo ($showSidebar) ? 'hasSidebar' : '' ?>">
 
-<!-- navbar start -->
+<!-- NAVBAR START -->
 <?php include('tpl_navbar.php') ?>
-<!-- navbar end -->
+<!-- NAVBAR END -->
+
+<!-- PAGE TOOLS -->
+<?php if ($showTools): ?>
+<ul class="nav nav-pills nav-stacked fixednavright">
+<?php tpl_action('edit', 1, 'li', 0, '', '', '<span class="glyphicon glyphicon-pencil"></span>'); ?>
+<?php tpl_action('revisions', 1, 'li', 0, '', '', '<span class="glyphicon glyphicon-tag"></span>'); ?>
+<?php tpl_action('backlink', 1, 'li', 0, '', '', '<span class="glyphicon glyphicon-link"></span>'); ?>
+<?php tpl_action('recent', 1, 'li', 0, '', '', '<span class="glyphicon glyphicon-time"></span>'); ?>
+</ul>
+<?php endif ?>
 
     <div class="container not-header">
         <div class="notifications">
@@ -47,7 +57,10 @@ $showSidebar = page_findnearest(tpl_getConf('sidebarID')) && ($ACT=='show');
 
         <a href="#dokuwiki__content" class="skip-to-content visible-xs btn-block btn btn-info"><?php echo $lang['skip_to_content'] ?></a>
 
-        <?php if($conf['breadcrumbs']) _tpl_breadcrumbs(); ?>
+        <!-- BREADCRUMBS -->
+        <div class="row" id="breadcrumbs"><div class="col-lg-12">
+        <?php _tpl_breadcrumbs(); ?>
+        </div></div>
 
         <section class="wrapper row"><!-- PAGE ACTIONS -->
             <!-- ********** ASIDE ********** -->

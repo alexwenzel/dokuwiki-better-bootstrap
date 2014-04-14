@@ -217,7 +217,7 @@ function _tpl_searchform($ajax = true, $autocomplete = true) {
     // don't print the search form if search action has been disabled
     if(!actionOK('search')) return false;
 
-    print '<form action="'.wl().'" accept-charset="utf-8" class="navbar-form navbar-left" id="dw__search" method="get" role="search">';
+    print '<form action="'.wl().'" accept-charset="utf-8" class="navbar-form navbar-right" id="dw__search" method="get" role="search">';
     print '<input type="hidden" name="do" value="search" />';
     print '<div class="form-group">';
     print '<input type="text" ';
@@ -356,6 +356,7 @@ function bootstrap_toc_html_buildlist($data,$class,$func,$lifunc='html_li_defaul
 }
 
 function _tpl_breadcrumbs() {
+
     global $lang;
     global $conf;
 
@@ -366,20 +367,20 @@ function _tpl_breadcrumbs() {
 
     $last = count($crumbs);
     if ($last > 1) {
-        print '<!-- BREADCRUMBS --><div class="row" id="breadcrumbs"><div class="col-lg-12"><ul class="breadcrumb">'.$lang['breadcrumb'].':&nbsp; ';
+        echo '<!-- BREADCRUMBS --><ul class="breadcrumb">'.$lang['breadcrumb'].':&nbsp; ';
         $i = 0;
         foreach ($crumbs as $id => $name) {
             $i++;
             if ($i == $last - 1) {
-                print '<li>';
+                echo '<li>';
                 tpl_pagelink(':'.$id, hsc($name), 'title="' . $id . '"');
             } else if ($i != $last) {
-                print '<li>';
+                echo '<li>';
                 tpl_pagelink(':'.$id, hsc($name), 'title="' . $id . '"');
             }
-            print '</li> ';
+            echo '</li> ';
         }
-        print '</ul></div></div>';
+        echo '</ul>';
     }
     return true;
 }

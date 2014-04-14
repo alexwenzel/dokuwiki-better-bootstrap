@@ -933,3 +933,14 @@ table th[class^="col-"] {
     border-color: inherit;
 }
 
+.fixednavright {
+  position: fixed;
+  right: 0px;
+  top: 25%;
+  z-index: 100;
+  background-color: #FFF;
+}
+.fixednavright a {
+  color: #090;
+  font-size: 30px;
+}
