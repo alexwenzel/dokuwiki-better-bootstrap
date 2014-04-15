@@ -98,6 +98,9 @@ $showSidebar = page_findnearest(tpl_getConf('sidebarID')) && ($ACT=='show');
     </div>
 </div><!-- /#dokuwiki__site -->
 
+<div class="no"><?php tpl_indexerWebBug(); ?></div>
+<!--[if ( IE 6 | IE 7 | IE 8 ) ]></div><![endif]-->
+
 <!-- FOOTER -->
 <footer id="dokuwiki__footer">
 <ul>
@@ -105,10 +108,6 @@ $showSidebar = page_findnearest(tpl_getConf('sidebarID')) && ($ACT=='show');
 <li><?php tpl_license('badge'); ?></li>
 </ul>
 </footer>
-
-<div class="no"><?php tpl_indexerWebBug(); ?></div>
-
-<!--[if ( IE 6 | IE 7 | IE 8 ) ]></div><![endif]-->
 
 <script src="<?php print DOKU_TPL; ?>/js/jquery-1.9.1.min.js" type="text/javascript"></script>
 <script type="text/javascript">var jQNew = $.noConflict(true);</script>
