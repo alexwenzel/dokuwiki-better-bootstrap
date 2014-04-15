@@ -100,7 +100,7 @@ $showSidebar = page_findnearest(tpl_getConf('sidebarID')) && ($ACT=='show');
 
 <!-- FOOTER -->
 <footer id="dokuwiki__footer">
-<ul class="doc breadcrumb pull-right">
+<ul>
 <li><?php tpl_pageinfo(); ?></li>
 <li><?php tpl_license('badge'); ?></li>
 </ul>
