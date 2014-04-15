@@ -42,16 +42,7 @@ class="dokuwiki site mode_<?php echo $ACT ?> <?php echo ($showSidebar) ? 'hasSid
 
 <!-- PAGE TOOLS -->
 <?php if ($showTools): ?>
-<ul class="nav nav-pills nav-stacked fixednavright hidden-xs">
-<?php if ((!empty($_SERVER['REMOTE_USER']))): ?>
-<?php tpl_action('edit', 1, 'li', 0, '', '', '<span class="glyphicon glyphicon-pencil"></span>'); ?>
-<?php else : ?>
-<?php tpl_action('edit', 1, 'li', 0, '', '', '<span class="glyphicon glyphicon-file"></span>'); ?>
-<?php endif; ?>
-<?php tpl_action('revisions', 1, 'li', 0, '', '', '<span class="glyphicon glyphicon-tag"></span>'); ?>
-<?php tpl_action('backlink', 1, 'li', 0, '', '', '<span class="glyphicon glyphicon-link"></span>'); ?>
-<?php tpl_action('recent', 1, 'li', 0, '', '', '<span class="glyphicon glyphicon-time"></span>'); ?>
-</ul>
+<?php include('tpl_pagetools.php') ?>
 <?php endif ?>
 
 <div class="container not-header">
@@ -113,10 +104,10 @@ class="dokuwiki site mode_<?php echo $ACT ?> <?php echo ($showSidebar) ? 'hasSid
         <!-- ********** FOOTER ********** -->
         <footer id="dokuwiki__footer">
             <ul class="doc breadcrumb pull-right">
-                <li><?php tpl_action('top', 1, ''); ?></li>
-                <li><?php tpl_pageinfo() /* 'Last modified' etc */ ?></li>
+                <li><?php tpl_pageinfo(); ?></li>
+                <li></li>
             </ul>
-            <?php tpl_license('button') /* content license, parameters: img=*badge|button|0, imgonly=*0|1, return=*0|1 */ ?>
+            <?php tpl_license('badge') /* content license, parameters: img=*badge|button|0, imgonly=*0|1, return=*0|1 */ ?>
         </footer><!-- /footer -->
 
         <?php tpl_includeFile('footer.html') ?>
