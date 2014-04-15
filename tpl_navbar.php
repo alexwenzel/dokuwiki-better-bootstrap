@@ -41,7 +41,8 @@
 </ul>
 
 <!-- SEARCH FORM -->
-<?php _tpl_searchform() ?>
+<div class="hidden-xs"><?php _tpl_searchform() ?></div>
+
 </div>
 </div>
 </div>

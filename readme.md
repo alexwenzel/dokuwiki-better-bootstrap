@@ -1,5 +1,7 @@
 # Dokuwiki - Better Bootstrap Template
 
+A functional, responsive Bootstrap theme for DokuWiki.
+
 This template is based on the [starter-bootstrap](https://github.com/wwu-housing/starter-bootstrap) template created by [Cameron Little](https://github.com/apexskier).
 
 ## Features

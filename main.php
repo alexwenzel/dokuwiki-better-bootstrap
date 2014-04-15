@@ -40,16 +40,34 @@ $showSidebar = page_findnearest(tpl_getConf('sidebarID')) && ($ACT=='show');
 <div class="container not-header">
 
 <!-- occasional error and info messages on top of the page -->
-<div class="notifications">
-<?php html_msgarea(); ?>
-</div>
-
-<!-- skip link -->
-<a href="#dokuwiki__content" class="skip-to-content visible-xs btn-block btn btn-info"><?php echo $lang['skip_to_content'] ?></a>
+<!-- <div class="notifications"><?php html_msgarea(); ?></div> -->
 
 <!-- BREADCRUMBS -->
 <div class="row hidden-xs" id="breadcrumbs"><div class="col-lg-12">
 <?php _tpl_breadcrumbs(); ?>
+</div></div>
+
+<!-- SEARCH FORM mobile-->
+<div class="row visible-xs" id="breadcrumbs"><div class="col-lg-12">
+<?php _tpl_searchform() ?>
+</div></div>
+
+<!-- skip link -->
+<a href="#dokuwiki__content" class="skip-to-content visible-xs btn-block btn btn-info"><?php echo $lang['skip_to_content'] ?></a>
+
+<!-- PAGE TOOLS mobile -->
+<div class="row visible-xs" id="breadcrumbs"><div class="col-lg-12">
+<ul class="nav nav-pills">
+<?php if ((!empty($_SERVER['REMOTE_USER']))): ?>
+<?php tpl_action('edit', 1, 'li', 0, '<span class="glyphicon glyphicon-pencil"></span> ', ''); ?>
+<?php else : ?>
+<?php tpl_action('edit', 1, 'li', 0, '<span class="glyphicon glyphicon-file"></span> '); ?>
+<?php endif; ?>
+<?php tpl_action('revisions', 1, 'li', 0, '<span class="glyphicon glyphicon-tag"></span> '); ?>
+<?php tpl_action('backlink', 1, 'li', 0, '<span class="glyphicon glyphicon-link"></span> '); ?>
+<?php tpl_action('recent', 1, 'li', 0, '<span class="glyphicon glyphicon-time"></span> '); ?>
+</ul>
+<br>
 </div></div>
 
 <section class="wrapper row">
@@ -71,7 +89,6 @@ $showSidebar = page_findnearest(tpl_getConf('sidebarID')) && ($ACT=='show');
     </aside><!-- /aside -->
     <?php endif; ?>
 
-    <!-- ********** CONTENT ********** -->
     <div id="dokuwiki__content" class="<?php if ($ACT == 'show'): ?>col-sm-<?php echo 12 - $cols; ?><?php else: ?>col-xs-12<?php endif; ?>">
         <?php if($conf['youarehere']){ ?>
             <div class="youarehere">
