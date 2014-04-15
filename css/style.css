@@ -935,12 +935,12 @@ table th[class^="col-"] {
 
 .fixednavright {
   position: fixed;
-  right: 0px;
+  right: 7px;
   top: 25%;
   z-index: 100;
   background-color: #FFF;
 }
 .fixednavright a {
   color: #090;
-  font-size: 30px;
+  font-size: 25px;
 }

@@ -35,6 +35,7 @@
 	</ul>
 	</li>
 	<?php else : ?>
+	<?php ($ACT == 'register') ? tpl_action('register', 1, 'li class="active"') : tpl_action('register', 1, 'li'); ?>
 	<?php ($ACT == 'login') ? tpl_action('login', 1, 'li class="active"') : tpl_action('login', 1, 'li'); ?>
 	<?php endif; ?>
 </ul>

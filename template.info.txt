@@ -1,7 +1,7 @@
 base     starter
-author   Cameron Little
-email    cameron@camlittle.com
-date     2013-10-31
-name     Starter Bootstrap
-desc     Bootstrap based Docuwiki template. http://camlitle.com/dokuwiki
-url      http://github.com/wwu-housing/starter-bootstrap
+author   Cameron Little, alexwenzel
+email    cameron@camlittle.com, alexander.wenzel.berlin@gmail.com
+date     2014-04-15
+name     Better Bootstrap
+desc     A better Bootstrap theme, based on "Starter Bootstrap".
+url      https://github.com/alexwenzel/starter-bootstrap

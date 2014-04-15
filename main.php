@@ -43,65 +43,72 @@ class="dokuwiki site mode_<?php echo $ACT ?> <?php echo ($showSidebar) ? 'hasSid
 <!-- PAGE TOOLS -->
 <?php if ($showTools): ?>
 <ul class="nav nav-pills nav-stacked fixednavright">
+<?php if ((!empty($_SERVER['REMOTE_USER']))): ?>
 <?php tpl_action('edit', 1, 'li', 0, '', '', '<span class="glyphicon glyphicon-pencil"></span>'); ?>
+<?php else : ?>
+<?php tpl_action('edit', 1, 'li', 0, '', '', '<span class="glyphicon glyphicon-file"></span>'); ?>
+<?php endif; ?>
 <?php tpl_action('revisions', 1, 'li', 0, '', '', '<span class="glyphicon glyphicon-tag"></span>'); ?>
 <?php tpl_action('backlink', 1, 'li', 0, '', '', '<span class="glyphicon glyphicon-link"></span>'); ?>
 <?php tpl_action('recent', 1, 'li', 0, '', '', '<span class="glyphicon glyphicon-time"></span>'); ?>
 </ul>
 <?php endif ?>
 
-    <div class="container not-header">
-        <div class="notifications">
-            <?php html_msgarea() /* occasional error and info messages on top of the page */ ?>
+<div class="container not-header">
+
+<!-- occasional error and info messages on top of the page -->
+<div class="notifications">
+<?php html_msgarea(); ?>
+</div>
+
+<!-- skip link -->
+<a href="#dokuwiki__content" class="skip-to-content visible-xs btn-block btn btn-info"><?php echo $lang['skip_to_content'] ?></a>
+
+<!-- BREADCRUMBS -->
+<div class="row" id="breadcrumbs"><div class="col-lg-12">
+<?php _tpl_breadcrumbs(); ?>
+</div></div>
+
+<section class="wrapper row">
+
+    <!-- sidebar -->
+    <?php if ($ACT == 'show'): ?>
+    <?php
+    $cols = (int)tpl_getConf('sidebar_cols');
+    ($cols < 0 || $cols >= 12) ? $cols = 3 : '';
+    ?>
+    <aside id="dokuwiki__aside" class="col-sm-<?php echo $cols;?>">
+        <?php if ($showSidebar && $cols > 0): ?>
+        <div class="sidebar-page">
+            <?php tpl_includeFile('sidebarheader.html') ?>
+            <?php bootstrap_tpl_include_sidebar($conf['sidebar'], false) ?>
+            <?php tpl_includeFile('sidebarfooter.html') ?>
+        </div>
+        <?php endif; ?>
+    </aside><!-- /aside -->
+    <?php endif; ?>
+
+    <!-- ********** CONTENT ********** -->
+    <div id="dokuwiki__content" class="<?php if ($ACT == 'show'): ?>col-sm-<?php echo 12 - $cols; ?><?php else: ?>col-xs-12<?php endif; ?>">
+        <?php if($conf['youarehere']){ ?>
+            <div class="youarehere">
+                <?php bootstrap_tpl_youarehere() ?>
+            </div>
+        <?php } ?>
+
+        <?php tpl_flush() /* flush the output buffer */ ?>
+        <?php tpl_includeFile('pageheader.html') ?>
+
+        <?php _tpl_toc(); ?>
+        <div class="page" role="main">
+        <!-- wikipage start -->
+            <?php tpl_content(false) /* the main content */ ?>
+        <!-- wikipage stop -->
         </div>
 
-        <a href="#dokuwiki__content" class="skip-to-content visible-xs btn-block btn btn-info"><?php echo $lang['skip_to_content'] ?></a>
-
-        <!-- BREADCRUMBS -->
-        <div class="row" id="breadcrumbs"><div class="col-lg-12">
-        <?php _tpl_breadcrumbs(); ?>
-        </div></div>
-
-        <section class="wrapper row"><!-- PAGE ACTIONS -->
-            <!-- ********** ASIDE ********** -->
-            <?php if ($ACT == 'show'): ?>
-            <aside id="dokuwiki__aside" class="col-sm-<?php
-                                    $cols = (int) tpl_getConf('sidebar_cols');
-                                    if ($cols < 0 || $cols >= 12) {
-                                        $cols = 3;
-                                    }
-                                    echo $cols; ?>">
-                <?php if ($showSidebar && $cols > 0): ?>
-                <div class="sidebar-page">
-                    <?php tpl_includeFile('sidebarheader.html') ?>
-                    <?php bootstrap_tpl_include_sidebar($conf['sidebar'], false) ?>
-                    <?php tpl_includeFile('sidebarfooter.html') ?>
-                </div>
-                <?php endif; ?>
-            </aside><!-- /aside -->
-            <?php endif; ?>
-
-            <!-- ********** CONTENT ********** -->
-            <div id="dokuwiki__content" class="<?php if ($ACT == 'show'): ?>col-sm-<?php echo 12 - $cols; ?><?php else: ?>col-xs-12<?php endif; ?>">
-                <?php if($conf['youarehere']){ ?>
-                    <div class="youarehere">
-                        <?php bootstrap_tpl_youarehere() ?>
-                    </div>
-                <?php } ?>
-
-                <?php tpl_flush() /* flush the output buffer */ ?>
-                <?php tpl_includeFile('pageheader.html') ?>
-
-                <?php _tpl_toc(); ?>
-                <div class="page" role="main">
-                <!-- wikipage start -->
-                    <?php tpl_content(false) /* the main content */ ?>
-                <!-- wikipage stop -->
-                </div>
-
-                <?php tpl_includeFile('pagefooter.html') ?>
-            </div><!-- /content -->
-        </section><!-- /wrapper -->
+        <?php tpl_includeFile('pagefooter.html') ?>
+    </div><!-- /content -->
+</section><!-- /wrapper -->
 
         <!-- ********** FOOTER ********** -->
         <footer id="dokuwiki__footer">
