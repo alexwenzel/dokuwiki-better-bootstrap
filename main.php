@@ -42,7 +42,7 @@ class="dokuwiki site mode_<?php echo $ACT ?> <?php echo ($showSidebar) ? 'hasSid
 
 <!-- PAGE TOOLS -->
 <?php if ($showTools): ?>
-<ul class="nav nav-pills nav-stacked fixednavright">
+<ul class="nav nav-pills nav-stacked fixednavright hidden-xs">
 <?php if ((!empty($_SERVER['REMOTE_USER']))): ?>
 <?php tpl_action('edit', 1, 'li', 0, '', '', '<span class="glyphicon glyphicon-pencil"></span>'); ?>
 <?php else : ?>
@@ -65,7 +65,7 @@ class="dokuwiki site mode_<?php echo $ACT ?> <?php echo ($showSidebar) ? 'hasSid
 <a href="#dokuwiki__content" class="skip-to-content visible-xs btn-block btn btn-info"><?php echo $lang['skip_to_content'] ?></a>
 
 <!-- BREADCRUMBS -->
-<div class="row" id="breadcrumbs"><div class="col-lg-12">
+<div class="row hidden-xs" id="breadcrumbs"><div class="col-lg-12">
 <?php _tpl_breadcrumbs(); ?>
 </div></div>
 
@@ -126,6 +126,11 @@ class="dokuwiki site mode_<?php echo $ACT ?> <?php echo ($showSidebar) ? 'hasSid
     <div class="no"><?php tpl_indexerWebBug() /* provide DokuWiki housekeeping, required in all templates */ ?></div>
     <!--[if ( IE 6 | IE 7 | IE 8 ) ]></div><![endif]-->
 
-    <?php @require_once(dirname(__FILE__).'/tail-js.php'); ?>
+<script src="<?php print DOKU_TPL; ?>/js/jquery-1.9.1.min.js" type="text/javascript"></script>
+<script type="text/javascript">var jQNew = $.noConflict(true);</script>
+<script src="<?php print DOKU_TPL; ?>js/bootstrap.min.js" type="text/javascript"></script>
+<script src="<?php print DOKU_TPL; ?>js/sorttable.js" type="text/javascript"></script>
+<script src="<?php print DOKU_TPL; ?>js/script.js" type="text/javascript"></script>
+
 </body>
 </html>
