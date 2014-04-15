@@ -19,7 +19,7 @@ if (!defined('DOKU_INC')) die(); /* must be run from within DokuWiki */
         <?php echo hsc($lang['mediaselect'])?>
         [<?php echo strip_tags($conf['title'])?>]
     </title>
-    <?php @require_once(dirname(__FILE__).'/head-css.php'); ?>
+    <?php @require_once(dirname(__FILE__).'/tpl_head.php'); ?>
 </head>
 
 <body>

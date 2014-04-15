@@ -21,7 +21,7 @@ $showSidebar = page_findnearest(tpl_getConf('sidebarID')) && ($ACT=='show');
         <?php tpl_pagetitle() ?>
         [<?php echo strip_tags($conf['title'])?>]
     </title>
-    <?php @require_once(dirname(__FILE__).'/head-css.php'); ?>
+    <?php @require_once(dirname(__FILE__).'/tpl_head.php'); ?>
 </head>
 
 <body data-spy="scroll" data-target="#dw_toc">
