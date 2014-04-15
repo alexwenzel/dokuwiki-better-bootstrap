@@ -944,3 +944,16 @@ table th[class^="col-"] {
   color: #090;
   font-size: 25px;
 }
+
+.ajax_qsearch {
+  display: none;
+  position: absolute;
+  z-index: 100;
+  background-color: #FFF;
+  padding: 10px;
+}
+
+.ajax-search > ul {
+  margin: 0 !important;
+  padding: 0 !important;
+}
