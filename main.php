@@ -17,24 +17,16 @@ $showSidebar = page_findnearest(tpl_getConf('sidebarID')) && ($ACT=='show');
 <head>
     <meta charset="UTF-8" />
     <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /><![endif]-->
-    <title>
-        <?php tpl_pagetitle() ?>
-        [<?php echo strip_tags($conf['title'])?>]
-    </title>
-    <?php @require_once(dirname(__FILE__).'/tpl_head.php'); ?>
+    <title><?php tpl_pagetitle() ?> [<?php echo strip_tags($conf['title'])?>]</title>
+    <?php include('tpl_head.php') ?>
 </head>
 
 <body data-spy="scroll" data-target="#dw_toc">
-<?php /* with these Conditional Comments you can better address IE issues in CSS files,
-precede CSS rules by #IE6 for IE6, #IE7 for IE7 and #IE8 for IE8 (div closes at the bottom) */ ?>
+
 <!--[if IE 6 ]><div id="IE6"><![endif]--><!--[if IE 7 ]><div id="IE7"><![endif]--><!--[if IE 8 ]><div id="IE8"><![endif]-->
 
-<?php /* the "dokuwiki__top" id is needed somewhere at the top, because that's where the "back to top" button/link links to */ ?>
-<?php /* classes mode_<action> are added to make it possible to e.g. style a page differently if it's in edit mode,
-see http://www.dokuwiki.org/devel:action_modes for a list of action modes */ ?>
-<?php /* .dokuwiki should always be in one of the surrounding elements (e.g. plugins and templates depend on it) */ ?>
-<div id="dokuwiki__site" ><div id="dokuwiki__top"
-class="dokuwiki site mode_<?php echo $ACT ?> <?php echo ($showSidebar) ? 'hasSidebar' : '' ?>">
+<div id="dokuwiki__site" >
+<div id="dokuwiki__top" class="dokuwiki site mode_<?php echo $ACT ?> <?php echo ($showSidebar) ? 'hasSidebar' : '' ?>">
 
 <!-- NAVBAR START -->
 <?php include('tpl_navbar.php') ?>
@@ -101,21 +93,22 @@ class="dokuwiki site mode_<?php echo $ACT ?> <?php echo ($showSidebar) ? 'hasSid
     </div><!-- /content -->
 </section><!-- /wrapper -->
 
-        <!-- ********** FOOTER ********** -->
-        <footer id="dokuwiki__footer">
-            <ul class="doc breadcrumb pull-right">
-                <li><?php tpl_pageinfo(); ?></li>
-                <li></li>
-            </ul>
-            <?php tpl_license('badge') /* content license, parameters: img=*badge|button|0, imgonly=*0|1, return=*0|1 */ ?>
-        </footer><!-- /footer -->
-
         <?php tpl_includeFile('footer.html') ?>
     </div>
-    </div></div><!-- /site -->
+    </div>
+</div><!-- /#dokuwiki__site -->
 
-    <div class="no"><?php tpl_indexerWebBug() /* provide DokuWiki housekeeping, required in all templates */ ?></div>
-    <!--[if ( IE 6 | IE 7 | IE 8 ) ]></div><![endif]-->
+<!-- FOOTER -->
+<footer id="dokuwiki__footer">
+<ul class="doc breadcrumb pull-right">
+<li><?php tpl_pageinfo(); ?></li>
+<li><?php tpl_license('badge'); ?></li>
+</ul>
+</footer>
+
+<div class="no"><?php tpl_indexerWebBug(); ?></div>
+
+<!--[if ( IE 6 | IE 7 | IE 8 ) ]></div><![endif]-->
 
 <script src="<?php print DOKU_TPL; ?>/js/jquery-1.9.1.min.js" type="text/javascript"></script>
 <script type="text/javascript">var jQNew = $.noConflict(true);</script>
