@@ -32,9 +32,11 @@ $showSidebar = page_findnearest(tpl_getConf('sidebarID')) && ($ACT=='show');
 <?php include('tpl_navbar.php') ?>
 <!-- NAVBAR END -->
 
-<!-- PAGE TOOLS -->
+<!-- PAGE TOOLS DESKTOP -->
 <?php if ($showTools): ?>
-<?php include('tpl_pagetools.php') ?>
+<ul class="nav nav-pills nav-stacked fixednavright hidden-xs hidden-sm">
+<?php include ('tpl_pagetools.php'); ?>
+</ul>
 <?php endif ?>
 
 <div class="container not-header">
@@ -52,23 +54,11 @@ $showSidebar = page_findnearest(tpl_getConf('sidebarID')) && ($ACT=='show');
 <?php _tpl_searchform() ?>
 </div></div>
 
-<!-- skip link -->
-<a href="#dokuwiki__content" class="skip-to-content visible-xs btn-block btn btn-info"><?php echo $lang['skip_to_content'] ?></a>
+<!-- skip link content -->
+<a href="#dokuwiki__content" class="skip-to-content visible-xs visible-sm btn-block btn btn-info"><?php echo $lang['skip_to_content'] ?></a>
 
-<!-- PAGE TOOLS mobile -->
-<div class="row visible-xs" id="breadcrumbs"><div class="col-lg-12">
-<ul class="nav nav-pills">
-<?php if ((!empty($_SERVER['REMOTE_USER']))): ?>
-<?php tpl_action('edit', 1, 'li', 0, '<span class="glyphicon glyphicon-pencil"></span> ', ''); ?>
-<?php else : ?>
-<?php tpl_action('edit', 1, 'li', 0, '<span class="glyphicon glyphicon-file"></span> '); ?>
-<?php endif; ?>
-<?php tpl_action('revisions', 1, 'li', 0, '<span class="glyphicon glyphicon-tag"></span> '); ?>
-<?php tpl_action('backlink', 1, 'li', 0, '<span class="glyphicon glyphicon-link"></span> '); ?>
-<?php tpl_action('recent', 1, 'li', 0, '<span class="glyphicon glyphicon-time"></span> '); ?>
-</ul>
-<br>
-</div></div>
+<!-- skip link content -->
+<a href="#dokuwiki__content" class="skip-to-content visible-xs visible-sm btn-block btn btn-info"><?php echo $lang['pagetools'] ?></a>
 
 <section class="wrapper row">
 
@@ -78,7 +68,7 @@ $showSidebar = page_findnearest(tpl_getConf('sidebarID')) && ($ACT=='show');
     $cols = (int)tpl_getConf('sidebar_cols');
     ($cols < 0 || $cols >= 12) ? $cols = 3 : '';
     ?>
-    <aside id="dokuwiki__aside" class="col-sm-<?php echo $cols;?>">
+    <aside id="dokuwiki__aside" class="col-lg-<?php echo $cols;?>">
         <?php if ($showSidebar && $cols > 0): ?>
         <div class="sidebar-page">
             <?php tpl_includeFile('sidebarheader.html') ?>
@@ -89,7 +79,7 @@ $showSidebar = page_findnearest(tpl_getConf('sidebarID')) && ($ACT=='show');
     </aside><!-- /aside -->
     <?php endif; ?>
 
-    <div id="dokuwiki__content" class="<?php if ($ACT == 'show'): ?>col-sm-<?php echo 12 - $cols; ?><?php else: ?>col-xs-12<?php endif; ?>">
+    <div id="dokuwiki__content" class="<?php if ($ACT == 'show'): ?>col-lg-<?php echo 12 - $cols; ?><?php else: ?>col-xs-12<?php endif; ?>">
         <?php if($conf['youarehere']){ ?>
             <div class="youarehere">
                 <?php bootstrap_tpl_youarehere() ?>
@@ -109,6 +99,15 @@ $showSidebar = page_findnearest(tpl_getConf('sidebarID')) && ($ACT=='show');
         <?php tpl_includeFile('pagefooter.html') ?>
     </div><!-- /content -->
 </section><!-- /wrapper -->
+
+<!-- PAGE TOOLS MOBILE -->
+<?php if ($showTools): ?>
+<div class="row visible-xs visible-sm"><div class="col-lg-12">
+<ul id="pagetools-mobile" class="nav nav-pills nav-justified">
+<?php include ('tpl_pagetools.php'); ?>
+</ul>
+</div></div>
+<?php endif ?>
 
         <?php tpl_includeFile('footer.html') ?>
     </div>
