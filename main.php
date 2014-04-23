@@ -54,11 +54,14 @@ $showSidebar = page_findnearest(tpl_getConf('sidebarID')) && ($ACT=='show');
 <?php _tpl_searchform() ?>
 </div></div>
 
-<!-- skip link content -->
-<a href="#dokuwiki__content" class="skip-to-content visible-xs visible-sm btn-block btn btn-info"><?php echo $lang['skip_to_content'] ?></a>
-
-<!-- skip link content -->
-<a href="#dokuwiki__content" class="skip-to-content visible-xs visible-sm btn-block btn btn-info"><?php echo $lang['pagetools'] ?></a>
+<!-- PAGE TOOLS MOBILE -->
+<?php if ($showTools): ?>
+<div class="row visible-xs visible-sm"><div class="col-lg-12" style="margin-bottom: 20px;">
+<ul id="pagetools-mobile" class="nav nav-pills nav-justified">
+<?php include ('tpl_pagetools.php'); ?>
+</ul>
+</div></div>
+<?php endif ?>
 
 <section class="wrapper row">
 
@@ -99,15 +102,6 @@ $showSidebar = page_findnearest(tpl_getConf('sidebarID')) && ($ACT=='show');
         <?php tpl_includeFile('pagefooter.html') ?>
     </div><!-- /content -->
 </section><!-- /wrapper -->
-
-<!-- PAGE TOOLS MOBILE -->
-<?php if ($showTools): ?>
-<div class="row visible-xs visible-sm"><div class="col-lg-12">
-<ul id="pagetools-mobile" class="nav nav-pills nav-justified">
-<?php include ('tpl_pagetools.php'); ?>
-</ul>
-</div></div>
-<?php endif ?>
 
         <?php tpl_includeFile('footer.html') ?>
     </div>
