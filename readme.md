@@ -20,4 +20,4 @@ instead of ``$`` when referencing jQuery 1.6 and ``jQNew`` should be used when r
 
 ## Installation
 
-Install as you would a normal dokuwiki template, but if you want your Config page to be pretty, you'll need to do delete the `./lib/plugins/config/style.css` file and move the `core_files/admin.php` file into your `./lib/plugins/config/` directory.
+Install as you would a normal dokuwiki template, but if you want your Config page to be pretty, you'll need to move the `core_files/admin.php` file into your `./lib/plugins/config/` directory.
