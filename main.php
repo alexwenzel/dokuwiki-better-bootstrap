@@ -120,10 +120,9 @@ $showSidebar = page_findnearest(tpl_getConf('sidebarID')) && ($ACT=='show');
 
 <!-- FOOTER -->
 <footer id="dokuwiki__footer">
-<ul>
-<li><?php tpl_pageinfo(); ?></li>
-<li><?php tpl_license('badge'); ?></li>
-</ul>
+<div class="container">
+<?php tpl_pageinfo(); ?>
+</div>
 </footer>
 
 <script src="<?php print DOKU_TPL; ?>/js/jquery-1.9.1.min.js" type="text/javascript"></script>
