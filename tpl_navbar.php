@@ -16,11 +16,22 @@
 <ul class="nav navbar-nav navbar-left">
 	<!-- PAGE TOOLS -->
 	<?php if ($showTools): ?>
-	<?php ($ACT == 'index') ? tpl_action('index', 1, 'li class="active"', 0, '<span class="glyphicon glyphicon-home"></span> ') : tpl_action('index', 1, 'li', 0, '<span class="glyphicon glyphicon-home"></span> '); ?>	
+	<?php tpl_action('index', 1, 'li', 0, '<span class="glyphicon glyphicon-home"></span> '); ?>
 	<?php endif; ?>
 </ul>
 
 <ul class="nav navbar-nav navbar-right">
+
+	<!-- PAGE TOOLS -->
+	<li class="dropdown visible-xs visible-sm">
+	<a href="#" class="dropdown-toggle" data-toggle="dropdown">Pagetools <b class="caret"></b></a>
+	<ul class="dropdown-menu">
+		<?php if ($showTools): ?>
+		<?php include ('tpl_pagetools_mobile.php'); ?>
+		<?php endif; ?>
+	</ul>
+	</li>
+
 	<!-- USER TOOLS -->
 	<?php if ((!empty($_SERVER['REMOTE_USER']))): ?>
 	<li class="dropdown">

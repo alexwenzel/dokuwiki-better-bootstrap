@@ -54,15 +54,6 @@ $showSidebar = page_findnearest(tpl_getConf('sidebarID')) && ($ACT=='show');
 <?php _tpl_searchform() ?>
 </div></div>
 
-<!-- PAGE TOOLS MOBILE -->
-<?php if ($showTools): ?>
-<div class="row visible-xs visible-sm"><div class="col-lg-12" style="margin-bottom: 20px;">
-<ul id="pagetools-mobile" class="nav nav-pills nav-justified">
-<?php include ('tpl_pagetools.php'); ?>
-</ul>
-</div></div>
-<?php endif ?>
-
 <section class="wrapper row">
 
     <!-- sidebar -->
